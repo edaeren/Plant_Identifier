@@ -40,3 +40,6 @@ const Welcome=()=>{
 }
 
 export default Welcome
+
+
+//deneme
