@@ -68,37 +68,6 @@ const Profile =({navigation})=>{
         )
     }
 
-    const addProduct=()=>{
-        Alert.alert(
-            "Add Product",
-            "Are you sure you want to add product?",
-            [
-                {
-                    text:"Cancel", onPress:()=>console.log("cancel add product")
-                },
-                {
-                    text:"Continue", onPress:()=>navigation.navigate('ProductAddPage')
-                },
-                {defaultIndex: 1}
-
-            ]
-        )
-    }
-
-    const addProductButton=()=>{
-        return(
-            <TouchableOpacity onPress={()=>addProduct() }>
-                <View style={styles.menuItem(0.2)}>
-                    <MaterialCommunityIcons
-                        name="plus"
-                        color={COLORS.primary}
-                        size={24}                     
-                        />
-                        <Text style={styles.menuText}>Add Product</Text>                  
-                </View>
-            </TouchableOpacity>
-        )
-    }
 
     const deleteAccount=()=>{
         Alert.alert(
@@ -171,34 +140,6 @@ const Profile =({navigation})=>{
                                         </View>
                                     </TouchableOpacity>
 
-
-                                    <TouchableOpacity onPress={()=>navigation.navigate('Orders')}>
-                                        <View style={styles.menuItem(0.2)}>
-                                            <MaterialCommunityIcons
-                                                name="truck-delivery-outline"
-                                                color={COLORS.primary}
-                                                size={24}   
-                                            
-                                            />
-                                            <Text style={styles.menuText}>Orders</Text>
-                                        
-                                        </View>
-                                    </TouchableOpacity>
-
-                                    <TouchableOpacity onPress={()=>navigation.navigate('Cart')}>
-                                        <View style={styles.menuItem(0.2)}>
-                                            <SimpleLineIcons
-                                                name="bag"
-                                                color={COLORS.primary}
-                                                size={24}   
-                                            
-                                            />
-                                            <Text style={styles.menuText}>Cart</Text>
-                                        
-                                        </View>
-                                    </TouchableOpacity>
-
-                                    {userData.admin === "1" ? addProductButton(): <View></View>}
 
                                     <TouchableOpacity onPress={()=>deleteAccount()}>
                                         <View style={styles.menuItem(0.2)}>

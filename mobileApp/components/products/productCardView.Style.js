@@ -37,12 +37,6 @@ const styles = StyleSheet.create({
         marginBottom:2,
         color:COLORS.gray
     },
-    
-    price:{
-        fontFamily:"bold",
-        fontSize:SIZES.medium,
-        marginBottom:2
-    },
     addBtn:{
         position:"absolute",
         bottom:SIZES.xSmall,

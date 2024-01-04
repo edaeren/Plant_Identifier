@@ -90,8 +90,6 @@ const Favorites=({navigation})=>{
 
                             <View style={styles.textContainer}>
                                 <Text style ={styles.fav}>{item.title}</Text>
-                                <Text style ={styles.supplier}>{item.supplier}</Text>
-                                <Text style ={styles.supplier}>{item.price}</Text>
                             </View>
 
                             

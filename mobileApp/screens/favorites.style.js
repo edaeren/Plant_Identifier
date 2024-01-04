@@ -52,11 +52,6 @@ const styles = StyleSheet.create({
         color: COLORS.primary,
         fontSize: SIZES.medium
     },
-    supplier:{
-        fontFamily: "regular",
-        color: COLORS.gray,
-        fontSize: 14
-    }
 })
 
 export default styles;

@@ -4,7 +4,6 @@ import { useRoute } from '@react-navigation/native';
 import {Ionicons,SimpleLineIcons,MaterialCommunityIcons,Fontisto} from '@expo/vector-icons';
 import styles from './productDetails.style'
 import { COLORS, SIZES } from '../constants';
-import AddToCart from '../hook/addToCart';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
@@ -54,10 +53,7 @@ const ProductDetails = ({navigation}) => {
     let productObj = {
       title : item.title,
       id : item._id,
-      supplier: item.supplier,
-      price: item.price,
       imageUrl: item.imageUrl,
-      product_location : item.product_location,
     }
     try {
       const existingItem = await AsyncStorage.getItem(favoritesId);
@@ -110,22 +106,6 @@ const ProductDetails = ({navigation}) => {
     }
   };
   
-  const handleBuy = async () => {
-    if(isLoggedIn === false){
-      navigation.navigate('Login')
-    }else{
-      console.log("pressed");
-    }
-  };
-
-  const handleCart = async () => {
-    if(isLoggedIn === false){
-      navigation.navigate('Login')
-    }else{
-      console.log("Giden item id: "+item._id + "  adedi :" + count);
-      AddToCart(item._id,count);
-    }
-  };
 
   return (
     <View style={styles.container}>
@@ -150,8 +130,6 @@ const ProductDetails = ({navigation}) => {
        <View style={styles.details}>
           <View style={styles.titleRow}>
               <Text style={styles.title}>{item.title}</Text>
-              <View style={styles.priceWrapper}>
-              <Text style={styles.price}>{item.price}</Text>
               </View>
           </View>
           <View style={styles.ratingRow}> 
@@ -186,35 +164,10 @@ const ProductDetails = ({navigation}) => {
               {item.description}
             </Text>
           </View>
-
-          <View style={{marginBottom:SIZES.small}}>
-            <View style={styles.location}>
-              <View style={{flexDirection:"row"}}>
-                <Ionicons name='location-outline' size={20}/>
-                <Text>  {item.product_location} </Text>
-              </View>
-
-              <View style={styles.location}>
-              <View style={{flexDirection:"row"}}>
-                <MaterialCommunityIcons name='truck-delivery-outline' size={20}/>
-                <Text>  Free Delivery </Text>
-              </View>
-            </View>
-            </View>
-
-            <View style={styles.cartRow}>
-                <TouchableOpacity onPress={()=>handleBuy()} style={styles.cartBtn}>
-                    <Text style={styles.cartTitle}>BUY NOW</Text>
-                </TouchableOpacity>
-                <TouchableOpacity onPress={()=>handleCart()} style={styles.addCart}>
-                    <Fontisto name="shopping-bag" size={22} color={COLORS.lightWhite}/>
-                </TouchableOpacity>
-            </View>
             
-          </View>
+        
 
        </View>
-    </View>
   )
 }
 

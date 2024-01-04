@@ -7,8 +7,6 @@ const app = express();
 const productRouter = require('./routes/products');
 const authRouter = require('./routes/auth');
 const userRouter = require('./routes/user');
-const orderRouter = require('./routes/order');
-const cartRouter = require('./routes/cart');
 
 const port = 3000;
 
@@ -21,8 +19,6 @@ app.use(express.urlencoded({limit:'10mb',extended: true}));
 app.use('/api/products/',productRouter)
 app.use('/api/',authRouter)
 app.use('/api/users/',userRouter)
-app.use('/api/orders/',orderRouter)
-app.use('/api/cart/',cartRouter)
 
 
 //app.get('/', (req, res) => res.send('Furnite World')) //tarayıcıda localhost:3000 'e giridğimiz zaman ekranda bu çıktı alıyoruz

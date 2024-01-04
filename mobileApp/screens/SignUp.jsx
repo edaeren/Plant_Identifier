@@ -18,11 +18,8 @@ const validationSchema= Yup.object().shape({
     email: Yup.string()
         .email("Provide a valid email adress")
         .required("Required"),
-    location: Yup.string()
-        .min(3,"Provide a valid location adress.")
-        .required("Required"),
     username: Yup.string()
-        .min(3,"Provide a valid location username.")
+        .min(3,"Provide a valid username.")
         .required("Required"),
 
   });
@@ -51,7 +48,7 @@ const SignUp=({navigation})=>{
     const registerUser= async(values)=>{
         setLoader(true);
         try {
-            const endpoint='http://10.7.86.217:3000/api/register';
+            const endpoint='http://172.16.0.109:3000/api/register';
             const data=values;
 
             const response =await axios.post(endpoint,data);
@@ -77,7 +74,7 @@ const SignUp=({navigation})=>{
                 />
                 <Text style={styles.title}>Unlimited Luxurious Furniture</Text>
                 <Formik
-                    initialValues={{ email:"",password:"",location:"",username:""}}
+                    initialValues={{ email:"",password:"",username:""}}
                     validationSchema={validationSchema}
                     onSubmit={values => registerUser(values)}
                 >
@@ -134,31 +131,6 @@ const SignUp=({navigation})=>{
                                 </View>
                                 {touched.email && errors.email &&(
                                     <Text style={styles.errorMessage}>{errors.email}</Text>
-                                )}
-                            </View>
-                            <View style={styles.wrapper}>
-                                <Text style={styles.label}>Location</Text>
-                                <View style={styles.inputWrapper(touched.location ? COLORS.secondary: COLORS.offwhite)}>
-                                    <Ionicons
-                                        name='location-outline'
-                                        size={20}
-                                        color={COLORS.gray}
-                                        style={styles.iconStyle}     
-                                    />
-                                    <TextInput
-                                        placeholder="Enter location"
-                                        onFocus={()=>{setFieldTouched("location")}}
-                                        onBlur={()=>{setFieldTouched('location',"")}}
-                                        value={values.location}
-                                        onChangeText={handleChange("location")}
-                                        autoCapitalize="none"
-                                        autoCorrect={false}
-                                        style={{flex:1}}
-
-                                    />
-                                </View>
-                                {touched.location && errors.location &&(
-                                    <Text style={styles.errorMessage}>{errors.location}</Text>
                                 )}
                             </View>
 

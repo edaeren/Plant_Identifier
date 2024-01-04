@@ -46,21 +46,7 @@ const Home =()=>{
     //anasayfadaki konum bilgisi ve shopping chart
     return(
        <SafeAreaView>
-            <View style={styles.appBarWrapper}>
-                <View style={styles.appBar}>
-                    <Ionicons name='locate-outline' size={24}/>
-                    <Text style={styles.location}>{userData ? userData.location: 'Sakarya'}</Text>
-
-                    <View style={{alignItems: "flex-end"}}>
-                        <View style={styles.cartCount}> 
-                            <Text style={styles.cartNumber}>8</Text>
-                        </View>               
-                        <TouchableOpacity>
-                            <Fontisto name='shopping-bag' size={24}/>
-                        </TouchableOpacity>
-                    </View>
-                </View>
-            </View>
+        
             <ScrollView>
                 <Welcome/>
                 <Carousel/>

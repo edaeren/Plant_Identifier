@@ -39,12 +39,6 @@ const styles= StyleSheet.create({
         fontFamily:"bold",
         color:COLORS.primary
     },
-    productSupplier:{
-        fontSize:SIZES.small+2,
-        fontFamily:"regular",
-        color:COLORS.gray,
-        marginTop:3
-    },
 
 
 })

@@ -92,14 +92,7 @@ const styles= StyleSheet.create({
         textAlign:"justify",
         marginBottom:SIZES.small
     },
-    location:{
-        flexDirection:"row",
-        justifyContent:"space-between",
-        alignItems:"center",
-        backgroundColor:COLORS.secondary,
-        padding:5,
-        borderRadius:SIZES.large
-    },
+   
     cartTitle:{
         marginLeft:SIZES.small,
         fontFamily:"bold",
@@ -110,16 +103,6 @@ const styles= StyleSheet.create({
     title:{
         fontFamily:"bold",
         fontSize:SIZES.large,
-
-    },
-    price:{
-        paddingHorizontal:6,
-        fontFamily:"semibold",
-        fontSize:SIZES.large,
-    },
-    priceWrapper:{
-        backgroundColor:COLORS.secondary,
-        borderRadius:SIZES.large,
 
     },
     addCart:{

@@ -16,6 +16,10 @@ const COLORS = {
   red: "#e81e4d",
   green: " #00C135",
   lightWhite: "#FAFAFC",
+  green2:"#83BB43",
+  green3:"#A3BB43",
+  green4:"#6C8331",
+  greendark:"#283602"
 };
 
 

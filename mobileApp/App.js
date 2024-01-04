@@ -6,7 +6,7 @@ import {useFonts} from 'expo-font';
 import * as SplashScreen from "expo-splash-screen";
 import { useCallback } from 'react';
 import BottomTabNavigation from './nav/BottomTabNavigation';
-import { Cart ,ProductDetails,NewRivals, LoginPage,Orders,Favorites,SignUp,ProductAddPage} from './screens';
+import {ProductDetails,NewRivals, LoginPage,Favorites,SignUp,Camera} from './screens';
 
 
 
@@ -48,11 +48,6 @@ export default function App() {
           options={{headerShown:false}}
         />
          <Stack.Screen
-          name='Cart'
-          component={Cart}
-          options={{headerShown:false}}
-        />
-         <Stack.Screen
           name='ProductDetails'
           component={ProductDetails}
           options={{headerShown:false}}
@@ -68,11 +63,6 @@ export default function App() {
           options={{headerShown:false}}
         />
          <Stack.Screen
-          name='Orders'
-          component={Orders}
-          options={{headerShown:false}}
-        />
-         <Stack.Screen
           name='Favorites'
           component={Favorites}
           options={{headerShown:false}}
@@ -83,8 +73,8 @@ export default function App() {
           options={{headerShown:false}}
         />
          <Stack.Screen
-          name='ProductAddPage'
-          component={ProductAddPage}
+          name='Camera'
+          component={Camera}
           options={{headerShown:false}}
         />
      
@@ -92,18 +82,3 @@ export default function App() {
     </NavigationContainer>
   );
 }
-
-/*
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  textStyle:{
-    fontFamily: 'extraBold',
-    fontSize: 20,
-
-  }
-});*/
