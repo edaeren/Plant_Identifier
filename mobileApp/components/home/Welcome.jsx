@@ -13,8 +13,8 @@ const Welcome=()=>{
         
        <View>
              <View tyle={styles.container}>
-                <Text style={styles.WelcomeTxt(COLORS.black, SIZES.xSmall)}>Find The Plant</Text>
-                <Text style={styles.WelcomeTxt(COLORS.primary,0)}>That You Are Looking For</Text>
+                <Text style={styles.WelcomeTxt(COLORS.black, SIZES.xSmall)}>Find The Most</Text>
+                <Text style={styles.WelcomeTxt(COLORS.primary,0)}>Luxurious Furniture</Text>
             </View>
 
             <View style={styles.searchContainer}>

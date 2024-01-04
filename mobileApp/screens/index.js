@@ -3,10 +3,12 @@ import Home from "./Home";
 import Profile from "./Profile";
 import Cart from "./Cart";
 import ProductDetails from "./ProductDetails";
-/*import Home from "../screens/Home";
-import Profile from "../screens/Profile";*/
-
-
+import NewRivals from "./NewRivals";
+import LoginPage from "./LoginPage";
+import Orders from "./Orders";
+import Favorites from "./Favorites";
+import SignUp from "./SignUp";
+import ProductAddPage from "./ProductAddPage";
 
 
 export{
@@ -14,5 +16,11 @@ export{
     Search,
     Profile,
     Cart,
-    ProductDetails
+    ProductDetails,
+    NewRivals,
+    LoginPage,
+    Orders,
+    Favorites,
+    SignUp,
+    ProductAddPage
 }

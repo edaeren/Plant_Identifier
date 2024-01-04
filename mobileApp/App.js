@@ -6,7 +6,7 @@ import {useFonts} from 'expo-font';
 import * as SplashScreen from "expo-splash-screen";
 import { useCallback } from 'react';
 import BottomTabNavigation from './nav/BottomTabNavigation';
-import { Cart ,ProductDetails} from './screens';
+import { Cart ,ProductDetails,NewRivals, LoginPage,Orders,Favorites,SignUp,ProductAddPage} from './screens';
 
 
 
@@ -55,6 +55,36 @@ export default function App() {
          <Stack.Screen
           name='ProductDetails'
           component={ProductDetails}
+          options={{headerShown:false}}
+        />
+        <Stack.Screen
+          name='ProductList'
+          component={NewRivals}
+          options={{headerShown:false}}
+        />
+        <Stack.Screen
+          name='Login'
+          component={LoginPage}
+          options={{headerShown:false}}
+        />
+         <Stack.Screen
+          name='Orders'
+          component={Orders}
+          options={{headerShown:false}}
+        />
+         <Stack.Screen
+          name='Favorites'
+          component={Favorites}
+          options={{headerShown:false}}
+        />
+        <Stack.Screen
+          name='SignUp'
+          component={SignUp}
+          options={{headerShown:false}}
+        />
+         <Stack.Screen
+          name='ProductAddPage'
+          component={ProductAddPage}
           options={{headerShown:false}}
         />
      
