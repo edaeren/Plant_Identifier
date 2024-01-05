@@ -1,6 +1,14 @@
 const Product = require('../models/Products')
 module.exports={
-
+    createProduct : async(req,res) =>{
+        const newProduct= new Product(req.body);
+        try {
+            await newProduct.save();
+            res.status(200).json("Ürün başarıyla oluşturuldu!")
+        } catch (error) {
+            res.status(500).json("Ürün oluşturulamadı...")
+        }
+    },
     getAllProduct: async(req,res)=>{
         try {
             const products = await Product.find().sort({createdAt : -1})
@@ -25,7 +33,7 @@ module.exports={
                 [
                     {
                       $search: {
-                        index: "furniture",
+                        index: "plant",
                         text: {
                           query: req.params.key,
                           path: {

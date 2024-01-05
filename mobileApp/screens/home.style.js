@@ -6,6 +6,9 @@ const styles=StyleSheet.create({
         fontFamily:"bold",
         fontSize:40,
     },
+    background:{
+        backgroundColor:COLORS.greendark
+    }
    
 })
 

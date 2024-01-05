@@ -45,7 +45,7 @@ const Home =()=>{
 
     //anasayfadaki konum bilgisi ve shopping chart
     return(
-       <SafeAreaView>
+       <SafeAreaView style={styles.background}>
         
             <ScrollView>
                 <Welcome/>
