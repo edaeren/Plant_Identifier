@@ -7,3 +7,5 @@ mobileApp/.DS_Store
 mobileApp/assets/.DS_Store
 .DS_Store
 mobileApp/.DS_Store
+mobileApp/node_modules
+mobileApp/BackEnd/node_modules
