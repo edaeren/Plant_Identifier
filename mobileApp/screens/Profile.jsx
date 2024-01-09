@@ -5,7 +5,8 @@ import { StatusBar } from 'expo-status-bar';
 import { COLORS } from "../constants";
 import {AntDesign, MaterialCommunityIcons,SimpleLineIcons} from "@expo/vector-icons";
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
+import getIp from '../hook/getIp';
+import axios from 'axios';
 
 const Profile =({navigation})=>{
     
@@ -68,6 +69,20 @@ const Profile =({navigation})=>{
         )
     }
 
+    const deleteUser= async()=>{
+        try {
+            const endpoint= getIp().ip;
+            const id = await AsyncStorage.getItem('id')
+            const useId = `users/${JSON.parse(id)}`;
+            const gonder = endpoint + useId
+            const response =await axios.delete(gonder);
+            if(response.status === 200){
+                navigation.navigate('Home')
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    };
 
     const deleteAccount=()=>{
         Alert.alert(
@@ -79,7 +94,7 @@ const Profile =({navigation})=>{
                     text:"Cancel", onPress:()=>console.log("cancel pressed")
                 },
                 {
-                    text:"Continue", onPress:()=>console.log("delete account pressed")
+                    text:"Continue", onPress:()=>deleteUser()
                 },
                 {defaultIndex: 1}
 

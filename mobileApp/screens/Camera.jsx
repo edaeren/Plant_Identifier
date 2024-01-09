@@ -4,7 +4,8 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import styles from "./camera.style";
 import {Ionicons} from '@expo/vector-icons';
 import { COLORS } from "../constants";
-
+import cameraApi from "../hook/cameraApi";
+import axios from "axios";
 const Camera=({navigation})=>{
 
     return(
@@ -16,7 +17,7 @@ const Camera=({navigation})=>{
                         size={30}
                         color={COLORS.lightWhite}/>
                     </TouchableOpacity>
-                    <Text style={styles.heading}></Text>
+                    <Text style={styles.heading}>Camera</Text>
                 </View>
             </View>
        </SafeAreaView>

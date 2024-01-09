@@ -5,9 +5,9 @@ import { COLORS } from '../../constants';
 
 const Carousel = () => {
     const slides =[
-      "https://img.freepik.com/free-photo/modern-apartment-with-comfortable-sofa-decor-generated-by-ai_188544-38495.jpg?w=2000&t=st=1703659085~exp=1703659685~hmac=1a152b6b61d9a4e5a807fd0fb5219f8f6569fd94474d048085f3cc62d387b0d4",
-        "https://img.freepik.com/free-photo/gray-sofa-brown-living-room-with-copy-space_43614-954.jpg?w=2000&t=st=1703659131~exp=1703659731~hmac=5cde8b899abd53d42744d8ec821589d91e7559818a31d0032f4e87f94b807455",
-        "https://img.freepik.com/free-photo/chic-modern-luxury-aesthetics-style-living-room-blue-tone_53876-125839.jpg?w=2000&t=st=1703659169~exp=1703659769~hmac=b156e2c9372b34666fd768c6ea700a8ee9d6bbceb14e4aa3115dd0099258954b",
+     "https://img.freepik.com/free-photo/pink-tree_335224-377.jpg?w=2000&t=st=1704794339~exp=1704794939~hmac=74acbcb65786f593fe7f18a6542038d35a057a43b6465900f14ac821538d1241",
+      "https://img.freepik.com/free-photo/modern-flowers-concept-with-elegant-style_23-2148006901.jpg?w=2000&t=st=1704794850~exp=1704795450~hmac=36e29ae078c9adbc155f228a5415b4bac1e3205648b5bd07661ae7d6e8d1aaf0",
+     "https://img.freepik.com/free-photo/growing-tulips-greenhouse-crafted-manufacture-your-celebration_155003-33498.jpg?w=2000&t=st=1704794682~exp=1704795282~hmac=7c84d391d9aa3257a7bdaa5bd15d7d1abe3cf3514a3f4d346c5292c78b7c6336"
     ]
   return (
     <View style={styles.carouselContainer}>

@@ -27,7 +27,7 @@ const validationSchema= Yup.object().shape({
 const SignUp=({navigation})=>{
 
     const [loader,setLoader]=useState(false);
-    const [obsecureText,setObsecureText]=useState(false);
+    const [obsecureText,setObsecureText]=useState(true);
 
     const inValidForm=()=>{
         Alert.alert(
@@ -59,6 +59,7 @@ const SignUp=({navigation})=>{
         } catch (error) {
             console.log(error)
         }
+        finally{setLoader(false)}
     };
 
 
@@ -73,7 +74,7 @@ const SignUp=({navigation})=>{
                     source={require('../assets/images/bk.png')}
                     style={styles.cover}
                 />
-                <Text style={styles.title}>Unlimited Luxurious Furniture</Text>
+                
                 <Formik
                     initialValues={{ email:"",password:"",username:""}}
                     validationSchema={validationSchema}
@@ -157,7 +158,7 @@ const SignUp=({navigation})=>{
                                     />
                                     <TouchableOpacity  onPress={()=>{setObsecureText(!obsecureText)}}>
                                         <MaterialCommunityIcons
-                                            name={obsecureText ? "eye-outline" : "eye-off-outline"}
+                                            name={obsecureText ? "eye-off-outline" : "eye-outline"}
                                             size={18}
                                         />
                                     </TouchableOpacity> 
