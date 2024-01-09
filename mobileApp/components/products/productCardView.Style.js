@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
         height:220,
         marginEnd:22,
         borderRadius:SIZES.medium,
-        backgroundColor:COLORS.secondary,
+        backgroundColor:COLORS.lightWhite,
     },
     imageContainer:{
         flex:1,

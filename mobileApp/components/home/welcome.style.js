@@ -18,7 +18,7 @@ const styles=StyleSheet.create({
         justifyContent:"center",
         alignContent:"center",
         marginHorizontal:SIZES.small,
-        backgroundColor:COLORS.secondary,
+        backgroundColor:COLORS.lightWhite,
         borderRadius:SIZES.medium,
         marginVertical:SIZES.medium,
         height:50
@@ -30,7 +30,7 @@ const styles=StyleSheet.create({
     },
     searchWrapper:{
         flex:1,
-        backgroundColor:COLORS.secondary,
+        backgroundColor:COLORS.lightWhite,
         marginRight:SIZES.small,
         borderRadius:SIZES.small
     },

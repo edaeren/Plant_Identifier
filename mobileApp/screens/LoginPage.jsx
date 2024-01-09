@@ -9,6 +9,7 @@ import {MaterialCommunityIcons} from "@expo/vector-icons";
 import { COLORS } from "../constants";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import getIp from "../hook/getIp";
 
 const validationSchema= Yup.object().shape({
     password: Yup.string()
@@ -44,7 +45,7 @@ const LoginPage=({navigation})=>{
     const login = async(values)=>{
         setLoader(true)
         try {
-            const endpoint="http://172.16.0.109:3000/api/login";
+            const endpoint= getIp().ip + "login";
             const data= values;
 
             const response= await axios.post(endpoint,data);

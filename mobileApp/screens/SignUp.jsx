@@ -10,6 +10,7 @@ import { COLORS } from "../constants";
 import LoginPage from "./LoginPage";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
+import getIp from "../hook/getIp";
 
 const validationSchema= Yup.object().shape({
     password: Yup.string()
@@ -48,7 +49,7 @@ const SignUp=({navigation})=>{
     const registerUser= async(values)=>{
         setLoader(true);
         try {
-            const endpoint='http://172.16.0.109:3000/api/register';
+            const endpoint=getIp().ip +'register';
             const data=values;
 
             const response =await axios.post(endpoint,data);
