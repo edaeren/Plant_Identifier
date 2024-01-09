@@ -1,7 +1,6 @@
 const axios = require("axios");
 
 const cameraApi = ()=>{ 
-    return(
         axios({
             method: "POST",
             url: "https://detect.roboflow.com/plant-wtcrc/3",
@@ -16,7 +15,4 @@ const cameraApi = ()=>{
         .catch(function(error) {
             console.log(error.message);
         })
-    )
 }
-
-export default cameraApi;
