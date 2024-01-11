@@ -1,4 +1,4 @@
-import { View ,Text,TouchableOpacity,Button, Alert} from "react-native";
+import { View ,Text,TouchableOpacity,Button, Alert,Image} from "react-native";
 import React, { useEffect, useState ,useRef} from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import styles from "./cameraPage.style";
@@ -12,6 +12,7 @@ export default function CameraPage({navigation}){
     const [type, setType] = useState(CameraType.back);
     const [permission, requestPermission] = Camera.useCameraPermissions();
     const [showCamera,setShowCamera]=useState(false);
+    const [image,setImage]=useState(null);
 
     //camera ref to access to camera
     const cameraRef=useRef(null);
@@ -96,7 +97,7 @@ export default function CameraPage({navigation}){
 
                {showCamera ? (
                 <Camera style={styles.camera} type={type} ref={cameraRef}>
-                        <View style={styles.buttonContainer}>
+                    <View style={styles.buttonContainer}>
                         <TouchableOpacity style={styles.button} onPress={toggleCameraType}>
                             <Text style={styles.text}>Flip Camera</Text>
                         </TouchableOpacity>
@@ -104,7 +105,11 @@ export default function CameraPage({navigation}){
                             style={styles.button}
                             onPress={async ()=>{
                                 const r= await takePhoto();
-                                Alert.alert("DEBUG",JSON.stringify(r));
+                                if(!r.cancelled){
+                                    setImage(r.uri);
+                                }
+                                //Alert.alert("DEBUG",JSON.stringify(r));
+                                setShowCamera(false);
                             }}
                         >
                             <Text style={styles.text}>
@@ -114,23 +119,38 @@ export default function CameraPage({navigation}){
                         <TouchableOpacity
                             style={styles.button}
                             onPress={()=>setShowCamera(false)}>
-                                <Text style={styles.text}>Cancel</Text>
-                            </TouchableOpacity>
-                        </View>
+                            <Text style={styles.text}>Cancel</Text>
+                        </TouchableOpacity>
+                    </View>
                 </Camera>):(
-                        <View style={{
-                            flex:1,
-                            justifyContent:"center",
-                            alignItems:"center",   
-                        }}>
-                            <TouchableOpacity
-                            style={styles.button2}
-                            onPress={()=>setShowCamera(true)}>
-                                <Text style={styles.button}>Take Picture</Text>
-                            </TouchableOpacity>
+                <View style={{flex:1,}}>
+                    {/* When the camera isn't showing */}
+                   
+                  
+                     <View style={{
+                        flex:1,
+                        justifyContent:"center",
+                        alignItems:"center",   
+                    }}>
+                         <View style={{width:'100%', alignItems:'center'}}>
+                        {
+                            image&&(
+                                <Image
+                                source={{uri: image}}
+                                style={{width:300,height:300,backgroundColor:'blue'}}
+                                />
+                            )
+                        }
+                    </View>
+                        <TouchableOpacity
+                        style={styles.button2}
+                        onPress={()=>setShowCamera(true)}>
+                        <Text style={styles.button}>Take Picture</Text>
+                        </TouchableOpacity>
                            
-                        </View>
-                    )}
+                    </View>
+                </View>
+                )}
             </View>
   
        </SafeAreaView>
