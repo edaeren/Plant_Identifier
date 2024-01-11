@@ -1,7 +1,7 @@
 import {View, Text} from 'react-native';
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Home,Search,Profile, Camera } from '../screens';
+import { Home,Search,Profile, CameraPage } from '../screens';
 import {Ionicons} from "@expo/vector-icons";
 import {COLORS} from "../constants/index";
 
@@ -19,7 +19,7 @@ const screenOptions={
         right:0,
         left:0,
         elevation:0,
-        height:50
+        height:60
 
     }
 }
@@ -57,8 +57,8 @@ const BottomTabNavigation =()=>{
                 }}
             />
             <Tab.Screen 
-                name="Camera" 
-                component={Camera}
+                name="CameraPage" 
+                component={CameraPage}
                 options={{
                     tabBarIcon: ({focused})=>{
                         return (

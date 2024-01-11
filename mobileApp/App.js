@@ -6,7 +6,7 @@ import {useFonts} from 'expo-font';
 import * as SplashScreen from "expo-splash-screen";
 import { useCallback } from 'react';
 import BottomTabNavigation from './nav/BottomTabNavigation';
-import {ProductDetails,NewRivals, LoginPage,Favorites,SignUp,Camera} from './screens';
+import {ProductDetails,NewRivals, LoginPage,Favorites,SignUp,CameraPage} from './screens';
 
 
 
@@ -73,8 +73,8 @@ export default function App() {
           options={{headerShown:false}}
         />
          <Stack.Screen
-          name='Camera'
-          component={Camera}
+          name='CameraPage'
+          component={CameraPage}
           options={{headerShown:false}}
         />
      

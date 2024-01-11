@@ -6,7 +6,7 @@ import NewRivals from "./NewRivals";
 import LoginPage from "./LoginPage";
 import Favorites from "./Favorites";
 import SignUp from "./SignUp";
-import Camera from "./Camera";
+import CameraPage from "./CameraPage";
 
 
 export{
@@ -18,5 +18,5 @@ export{
     LoginPage,
     Favorites,
     SignUp,
-    Camera
+    CameraPage
 }

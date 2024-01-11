@@ -30,7 +30,7 @@ const Welcome=()=>{
                     />
                 </View>
                 <View>
-                    <TouchableOpacity style={styles.searchBtn} onPress={()=>navigation.navigate("Camera")}>
+                    <TouchableOpacity style={styles.searchBtn} onPress={()=>navigation.navigate("CameraPage")}>
                         <Ionicons name="camera-outline" size={SIZES.xLarge} color={COLORS.offwhite}/>
                     </TouchableOpacity>
                 </View>
