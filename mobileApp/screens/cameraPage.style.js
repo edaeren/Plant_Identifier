@@ -7,7 +7,7 @@ const styles= StyleSheet.create({
         flex:1,
         backgroundColor:COLORS.lightWhite,
         justifyContent: 'center',
-
+        
     },
     container2:{
         flex:13,
@@ -16,7 +16,8 @@ const styles= StyleSheet.create({
        // marginBottom:SIZES.xxLarge*4,
        // width:300,
         //marginLeft:SIZES.xxLarge
-        marginBottom:50
+        marginBottom:50,
+        
 
     },
     container3:{
@@ -26,28 +27,34 @@ const styles= StyleSheet.create({
         alignItems:'center',
         width:150,
         height:50,
-        marginLeft:140
+        marginLeft:140,
+        
     },
     camera: {
         flex: 1,
+        
     },
     buttonContainer: {
         flex: 1,
         flexDirection: 'row',
         backgroundColor: 'transparent',
         margin: 20,
-        marginBottom:40
+        marginBottom:40,
+        
     },
     button: {
         flex: 1,
         alignSelf: 'flex-end',
         alignItems: 'center',
+       fontWeight:'bold',
+       
     },
     button2: {
         flex: 1,
         //alignSelf: 'flex-end',
         alignItems: 'center',
         justifyContent:"center",
+        
     },
 
     text: {

@@ -3,7 +3,7 @@ import React, { useEffect, useState ,useRef} from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import styles from "./cameraPage.style";
 import {Ionicons} from '@expo/vector-icons';
-import { COLORS } from "../constants";
+import { COLORS, SIZES } from "../constants";
 import axios from "axios";
 
 import { Camera, CameraType } from 'expo-camera';
@@ -123,25 +123,30 @@ export default function CameraPage({navigation}){
                         </TouchableOpacity>
                     </View>
                 </Camera>):(
-                <View style={{flex:1,}}>
+                <View style={{flex:1, justifyContent:'center', alignItems:'center'}}>
                     {/* When the camera isn't showing */}
                    
                   
                      <View style={{
                         flex:1,
-                        justifyContent:"center",
-                        alignItems:"center",   
+                        justifyContent:'center',
+                        alignItems:'center',  
+                        backgroundColor:COLORS.lightWhite, 
+                        margin:100,
+                        
+                        
+                        
                     }}>
                          <View style={{width:'100%', alignItems:'center'}}>
                         {
                             image&&(
                                 <Image
                                 source={{uri: image}}
-                                style={{width:300,height:300,backgroundColor:'blue'}}
+                                style={{width:300,height:300,backgroundColor:'blue',borderRadius:13}}
                                 />
                             )
                         }
-                    </View>
+                        </View>
                         <TouchableOpacity
                         style={styles.button2}
                         onPress={()=>setShowCamera(true)}>
