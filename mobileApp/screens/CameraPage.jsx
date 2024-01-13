@@ -7,12 +7,15 @@ import { COLORS, SIZES } from "../constants";
 import axios from "axios";
 
 import { Camera, CameraType } from 'expo-camera';
+import { replace } from "formik";
 
 export default function CameraPage({navigation}){
     const [type, setType] = useState(CameraType.back);
     const [permission, requestPermission] = Camera.useCameraPermissions();
     const [showCamera,setShowCamera]=useState(false);
     const [image,setImage]=useState(null);
+
+    const[imageName,setImageName]=useState("");
 
     //camera ref to access to camera
     const cameraRef=useRef(null);
@@ -71,6 +74,71 @@ export default function CameraPage({navigation}){
             console.log(error.message);
         });
     }
+    const cameraApi2 = ()=>{ 
+        console.log("burdayım2");
+       //const foto2=foto.replace(foto,"'"+foto+"'")
+        //console.log(foto2);
+        
+        const axios = require("axios");
+            const fs = require("react-native-fs");
+
+            const image = fs.readFileSync("{foto2}", {
+                encoding: "base64"
+            });
+
+            axios({
+                method: "POST",
+                url: "https://detect.roboflow.com/plant-wtcrc/3",
+                params: {
+                    api_key: "pmoESnYL9PvaNON2BScS"
+                },
+                data: image,
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded"
+                }
+            })
+            .then(function(response) {
+                console.log(response.data);
+                setImageName(response.data);
+            })
+            .catch(function(error) {
+                console.log(error.message);
+            });
+    }
+
+    //called to take the photo
+    const cameraApi3 =(fotouri)=>{
+        console.log("burdayım3");
+        const foto2=fotouri.replace(fotouri,"'"+fotouri+"'")
+        console.log(foto2);
+
+        const axios = require("axios");
+            const fs = require("react-native-fs");
+
+            const image = fs.readFileSync(foto2, {
+                encoding: "base64"
+            });
+
+            axios({
+                method: "POST",
+                url: "https://detect.roboflow.com/plant-wtcrc/3",
+                params: {
+                    api_key: "pmoESnYL9PvaNON2BScS"
+                },
+                data: image,
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded"
+                }
+            })
+            .then(function(response) {
+                console.log(response.data);
+                setImageName(response.data);
+            })
+            .catch(function(error) {
+                console.log(error.message);
+            });
+      }
+
 
     return(
        <SafeAreaView style={styles.container}>
@@ -81,7 +149,7 @@ export default function CameraPage({navigation}){
                         size={30}
                         color={COLORS.lightWhite}/>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={()=>(cameraApi())}>
+                    <TouchableOpacity onPress={()=>(cameraApi2())}>
                         <Ionicons name='chevron-back-circle' 
                         size={30}
                         color={COLORS.lightWhite}/>
@@ -104,10 +172,16 @@ export default function CameraPage({navigation}){
                         <TouchableOpacity 
                             style={styles.button}
                             onPress={async ()=>{
-                                const r= await takePhoto();
+                               // const r= await takePhoto();
+                                const r=await takePhoto();
                                 if(!r.cancelled){
                                     setImage(r.uri);
+                                    
                                 }
+                                //const foto=JSON.stringify(r).split("");
+                               // Alert.alert(foto);
+                         
+                                cameraApi3(r.uri);
                                 //Alert.alert("DEBUG",JSON.stringify(r));
                                 setShowCamera(false);
                             }}
@@ -137,6 +211,10 @@ export default function CameraPage({navigation}){
                         
                         
                     }}>
+
+                            <View>
+                             <Text>deneme{imageName}</Text>
+                            </View>
                          <View style={{width:'100%', alignItems:'center'}}>
                         {
                             image&&(
@@ -154,10 +232,13 @@ export default function CameraPage({navigation}){
                         </TouchableOpacity>
                            
                     </View>
+                    
                 </View>
+               
                 )}
             </View>
   
+            
        </SafeAreaView>
     );
 }
