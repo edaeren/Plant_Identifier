@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 import {COLORS,SIZES} from "../constants";
-import Search from "./Search";
+
 
 const styles=StyleSheet.create({
     searchContainer:{

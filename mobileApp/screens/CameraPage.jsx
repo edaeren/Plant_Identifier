@@ -1,21 +1,36 @@
-import { View ,Text,TouchableOpacity,Button, Alert,Image} from "react-native";
-import React, { useEffect, useState ,useRef} from "react";
+import { View ,Text,TouchableOpacity,Button,Image} from "react-native";
+import React, {useState ,useRef} from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import styles from "./cameraPage.style";
 import {Ionicons} from '@expo/vector-icons';
-import { COLORS, SIZES } from "../constants";
+import { COLORS} from "../constants";
 import axios from "axios";
-
 import { Camera, CameraType } from 'expo-camera';
-import { replace } from "formik";
+import { createClient } from '@supabase/supabase-js'
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import 'react-native-url-polyfill/auto'
+import { FlatList } from "react-native-gesture-handler";
+import SearchTile from "../components/products/SearchTile";
+import getIp from "../hook/getIp";
 
 export default function CameraPage({navigation}){
     const [type, setType] = useState(CameraType.back);
     const [permission, requestPermission] = Camera.useCameraPermissions();
     const [showCamera,setShowCamera]=useState(false);
     const [image,setImage]=useState(null);
+    const [imageName,setImageName]=useState("");
+    const [msg, setMsg] = useState('');
+    const [searchResults, setSearchResults]= useState([]);
 
-    const[imageName,setImageName]=useState("");
+    const handleSearch= async(searchKey)=>{
+        try {
+            const response= await axios.get(getIp().ip +`products/search/${searchKey}`)
+            setSearchResults(response.data)
+        } catch (error) {
+            console.log("Failed to get the products",error);
+        }
+    };
+
 
     //camera ref to access to camera
     const cameraRef=useRef(null);
@@ -38,14 +53,38 @@ export default function CameraPage({navigation}){
       //called to take the photo
       const takePhoto =async()=>{
         if(cameraRef){
-            console.log("in take picture");
             try{
                 let photo=await cameraRef.current.takePictureAsync({
                     allowsEditing: true,
                     aspect: [4,3],
                     quality:1,
                 });
-                return photo;
+
+                if(!photo.cancelled){
+                    const supabase_url = 'https://zwbbihkwpvdvdluyhkhc.supabase.co'
+                    const supabase_key = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp3YmJpaGt3cHZkdmRsdXloa2hjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDUyMzI3MzEsImV4cCI6MjAyMDgwODczMX0.2k619R_H1Liy1H0bA_BX_-NOhEfqCi7ptiBtMLQV9MY'
+                    const supabase = createClient(supabase_url,supabase_key,{
+                        localStorage : AsyncStorage
+                    });
+                    const ext = photo.uri.substring(photo.uri.lastIndexOf(".") + 1);
+
+                    const fileName = photo.uri.replace(/^.*[\\\/]/,"");
+                    var formData = new FormData();
+                    formData.append("files",{
+                        uri:photo.uri,
+                        name:fileName,
+                        type :photo.type ? `video/${ext}` : `image/${ext}`,
+                    })
+                    console.log("Resim çekildi database'e yükleniyor...")
+                    const {data,error} = await supabase.storage.from("plants").upload(fileName,formData)
+                    console.log("Database'e yüklendi")
+                    cameraApi(fileName,supabase)
+                    if(error)console.log(error);
+                    return {...photo,ImageData:data};
+                }else{
+                    return photo
+                }
+                
             }catch(e){
                 console.log(e);
             }
@@ -56,100 +95,53 @@ export default function CameraPage({navigation}){
         setType(current => (current === CameraType.back ? CameraType.front : CameraType.back));
       }
     
-
-
-    const cameraApi = ()=>{ 
+    const cameraApi = (filename,supabase)=>{ 
+        console.log("Roboflow'a geldi")
+        const {data} = supabase.storage.from("plants").getPublicUrl(filename);
+        console.log(data.publicUrl)
         axios({
             method: "POST",
             url: "https://detect.roboflow.com/plant-wtcrc/3",
             params: {
                 api_key: "pmoESnYL9PvaNON2BScS",
-                image: "https://img.freepik.com/free-photo/vibrant-yellow-daisy-blossoms-nature-generative-ai_188544-9560.jpg?w=2000&t=st=1704808791~exp=1704809391~hmac=4569fb0e1fc1565a53fd6128193c27a1db566d8081674ec312c35962b4762ae8"
+                image: data.publicUrl
             }
         })
         .then(function(response) {
-            console.log(response.data);
+            if(response.data.predictions == 0){
+                console.log('plant not found')
+                setMsg('Plant not found')
+                setSearchResults([])
+                setImageName('')
+            }
+            else{
+                console.log(response.data)
+                if(response.data.predictions[1]){
+                    const searchKey =response.data.predictions[0].class +"+"+ response.data.predictions[1].class;
+                    const searchKey2 = response.data.predictions[0].class + " " + response.data.predictions[1].class;
+                    console.log(searchKey)
+                    handleSearch(searchKey)
+                    setImageName(searchKey2)
+                }else{
+                    const searchKey =response.data.predictions[0].class;
+                    console.log(searchKey)
+                    handleSearch(searchKey)
+                    setImageName(searchKey)
+                }
+
+               
+            }
         })
         .catch(function(error) {
             console.log(error.message);
         });
     }
-    const cameraApi2 = ()=>{ 
-        console.log("burdayım2");
-       //const foto2=foto.replace(foto,"'"+foto+"'")
-        //console.log(foto2);
-        
-        const axios = require("axios");
-            const fs = require("react-native-fs");
-
-            const image = fs.readFileSync("{foto2}", {
-                encoding: "base64"
-            });
-
-            axios({
-                method: "POST",
-                url: "https://detect.roboflow.com/plant-wtcrc/3",
-                params: {
-                    api_key: "pmoESnYL9PvaNON2BScS"
-                },
-                data: image,
-                headers: {
-                    "Content-Type": "application/x-www-form-urlencoded"
-                }
-            })
-            .then(function(response) {
-                console.log(response.data);
-                setImageName(response.data);
-            })
-            .catch(function(error) {
-                console.log(error.message);
-            });
-    }
-
-    //called to take the photo
-    const cameraApi3 =(fotouri)=>{
-        console.log("burdayım3");
-        const foto2=fotouri.replace(fotouri,"'"+fotouri+"'")
-        console.log(foto2);
-
-        const axios = require("axios");
-            const fs = require("react-native-fs");
-
-            const image = fs.readFileSync(foto2, {
-                encoding: "base64"
-            });
-
-            axios({
-                method: "POST",
-                url: "https://detect.roboflow.com/plant-wtcrc/3",
-                params: {
-                    api_key: "pmoESnYL9PvaNON2BScS"
-                },
-                data: image,
-                headers: {
-                    "Content-Type": "application/x-www-form-urlencoded"
-                }
-            })
-            .then(function(response) {
-                console.log(response.data);
-                setImageName(response.data);
-            })
-            .catch(function(error) {
-                console.log(error.message);
-            });
-      }
-
 
     return(
        <SafeAreaView style={styles.container}>
             <View style={styles.wrapper}>
                 <View style={styles.upperRow}>
                     <TouchableOpacity onPress={()=>(navigation.goBack())}>
-                        <Ionicons name='chevron-back-circle' 
-                        size={30}
-                        color={COLORS.lightWhite}/>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={()=>(cameraApi2())}>
                         <Ionicons name='chevron-back-circle' 
                         size={30}
                         color={COLORS.lightWhite}/>
@@ -181,7 +173,7 @@ export default function CameraPage({navigation}){
                                 //const foto=JSON.stringify(r).split("");
                                // Alert.alert(foto);
                          
-                                cameraApi3(r.uri);
+                                //cameraApi3(r.uri);
                                 //Alert.alert("DEBUG",JSON.stringify(r));
                                 setShowCamera(false);
                             }}
@@ -213,7 +205,7 @@ export default function CameraPage({navigation}){
                     }}>
 
                             <View>
-                             <Text>deneme{imageName}</Text>
+                             <Text>{imageName}</Text>
                             </View>
                          <View style={{width:'100%', alignItems:'center'}}>
                         {
@@ -224,18 +216,35 @@ export default function CameraPage({navigation}){
                                 />
                             )
                         }
+                        
                         </View>
-                        <TouchableOpacity
-                        style={styles.button2}
-                        onPress={()=>setShowCamera(true)}>
-                        <Text style={styles.button}>Take Picture</Text>
-                        </TouchableOpacity>
+                        
                            
                     </View>
-                    
+                            <TouchableOpacity
+                            style={styles.button2}
+                            onPress={()=>setShowCamera(true)}>
+                            <Text style={styles.button}>Take Picture <Ionicons name='camera' size={30}color={COLORS.green}/> </Text>
+                            
+                            </TouchableOpacity>
                 </View>
                
                 )}
+                <View> 
+                    
+                    {searchResults.length === 0 ? (
+                    <View>
+                        <Text>{msg}</Text>
+                    </View>)
+                    :(
+                    <FlatList
+                        data={searchResults}
+                        keyExtractor={(item)=> item._id}
+                        renderItem={({item})=>(<SearchTile item= {item}/>)}
+                        style={{marginHorizontal:12}}            
+                    />
+                    )}
+                </View>
             </View>
   
             

@@ -20,9 +20,6 @@ const ProductCardView = ({item}) => {
                 <Text style={styles.title} numberOfLines={1}>{item.title}</Text>
                 <Text style={styles.information} numberOfLines={1}>{item.description}</Text>
             </View>
-            <TouchableOpacity style={styles.addBtn}>
-                <Ionicons name="add-circle" size={35} color={COLORS.primary}/>
-            </TouchableOpacity>
 
         </View>
    </TouchableOpacity>

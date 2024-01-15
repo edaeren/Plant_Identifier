@@ -8,6 +8,7 @@ const styles= StyleSheet.create({
         backgroundColor:COLORS.lightWhite,
         justifyContent: 'center',
         
+        
     },
     container2:{
         flex:13,
@@ -18,16 +19,17 @@ const styles= StyleSheet.create({
         //marginLeft:SIZES.xxLarge
         marginBottom:50,
         
+        
 
     },
     container3:{
         //flex:1,
-        backgroundColor:COLORS.gray,
         justifyContent: "center",
         alignItems:'center',
         width:150,
         height:50,
         marginLeft:140,
+        
         
     },
     camera: {
@@ -41,12 +43,14 @@ const styles= StyleSheet.create({
         margin: 20,
         marginBottom:40,
         
+        
     },
     button: {
         flex: 1,
         alignSelf: 'flex-end',
         alignItems: 'center',
        fontWeight:'bold',
+      // backgroundColor:COLORS.gray
        
     },
     button2: {
@@ -54,6 +58,7 @@ const styles= StyleSheet.create({
         //alignSelf: 'flex-end',
         alignItems: 'center',
         justifyContent:"center",
+
         
     },
 
