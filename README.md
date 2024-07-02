@@ -1,6 +1,6 @@
 Plant Identifier App
 Project Overview
-This project aims to develop a mobile application that uses image processing and machine learning technologies to recognize plants and provide care information. The app will allow users to take photos of plants, identify them, and receive detailed care instructions. It will also include a database of plant information that users can browse and search.
+This project aims to develop a mobile application that uses image processing and machine learning technologies to recognize plants and provide care information. The app allows users to take photos of plants, identify them, and receive detailed care instructions. It also includes a database of plant information that users can browse and search.
 
 Features
 
