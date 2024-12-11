@@ -23,3 +23,4 @@ Mobile Development: React Native and JavaScript for building the mobile applicat
 ![image](https://github.com/user-attachments/assets/6e5b9f29-3b26-48d0-810b-80d1367c2fe6)
 ![image](https://github.com/user-attachments/assets/353d0b9d-702f-4d09-bae1-69586c78f820)
 ![image](https://github.com/user-attachments/assets/3dabf0ee-83be-42af-9309-1af633151c5f)
+![WhatsApp Image 2024-12-11 at 20 32 42](https://github.com/user-attachments/assets/731ee4f3-072e-4a32-b88a-5d065d3c16c8)
