@@ -61,8 +61,8 @@ export default function CameraPage({navigation}){
                 });
 
                 if(!photo.cancelled){
-                    const supabase_url = 'https://zwbbihkwpvdvdluyhkhc.supabase.co'
-                    const supabase_key = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp3YmJpaGt3cHZkdmRsdXloa2hjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDUyMzI3MzEsImV4cCI6MjAyMDgwODczMX0.2k619R_H1Liy1H0bA_BX_-NOhEfqCi7ptiBtMLQV9MY'
+                    const supabase_url = ''
+                    const supabase_key = ''
                     const supabase = createClient(supabase_url,supabase_key,{
                         localStorage : AsyncStorage
                     });
