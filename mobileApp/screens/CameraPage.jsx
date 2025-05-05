@@ -103,7 +103,7 @@ export default function CameraPage({navigation}){
             method: "POST",
             url: "https://detect.roboflow.com/plant-wtcrc/3",
             params: {
-                api_key: "pmoESnYL9PvaNON2BScS",
+                api_key: "",
                 image: data.publicUrl
             }
         })
